@@ -170,6 +170,7 @@ scheduler_events = {
     "cron": {
         "* * * * *": [
             "electronic_tender.controllers.scheduled_tasks.collect_tenders",
+            "electronic_tender.controllers.scheduled_tasks.collect_tender_packages",
             "electronic_tender.controllers.scheduled_tasks.collect_tender_lots",
         ]
     }
