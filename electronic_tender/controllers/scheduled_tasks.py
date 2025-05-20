@@ -15,7 +15,7 @@ def collect_tender_packages():
         """
         UPDATE `tabTender Package`
         SET status = "Closed"
-        WHERE close_time < UNIX_TIMESTAMP() - 120
+        WHERE close_time_ts < UNIX_TIMESTAMP() - 120
         """
     )
     
@@ -25,6 +25,6 @@ def collect_tender_lots():
         """
         UPDATE `tabTender Lot`
         SET status = "Closed"
-        WHERE close_time < UNIX_TIMESTAMP() - 60
+        WHERE close_time_ts < UNIX_TIMESTAMP() - 60
         """
     )
