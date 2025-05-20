@@ -5,7 +5,7 @@ import frappe
 import pytz
 from frappe.model.document import Document
 
-from tender.controllers.tender_package import enqueue_tender_lot_import
+from electronic_tender.controllers.tender_package import enqueue_tender_lot_import
 
 class TenderPackage(Document):
     def after_insert(self):
