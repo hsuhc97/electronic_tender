@@ -11,21 +11,21 @@ def enqueue_tender_lot_import(tender_package, restart = False):
     tender_package = frappe.get_doc("Tender Package", tender_package)
     if (tender_package.status != "Draft"):
         frappe.throw(
-            _("{0} is in {1} status, only Draft status is allowed").format(
+            "{0} is in {1} status, only Draft status is allowed".format(
                 tender_package.name, tender_package.status
-            ),
+            )
         )
     if (tender_package.import_file == None):
         frappe.throw(
-            _("{0} has no import file").format(
+            "{0} has no import file".format(
                 tender_package.name
-            ),
+            )
         )
     if (tender_package.tender_lot_import_template == None):
         frappe.throw(
-            _("{0} has no tender lot import template").format(
+            "{0} has no tender lot import template".format(
                 tender_package.name
-            ),
+            )
         )
     if (tender_package.number_of_total_rows == 0 or restart):
         frappe.enqueue(
@@ -51,13 +51,11 @@ def tender_lot_import_prepare(tender_package):
         
         folder_name = "/tmp/tender_package_import"
         os.makedirs(folder_name, exist_ok=True)
-        for filename in os.listdir(folder_name):
-            file_path = os.path.join(folder_name, filename)
-            if os.path.isfile(file_path):
-                os.remove(file_path)
-        
-        file_url = tender_package.import_file
         file_name = os.path.join(folder_name, tender_package.name)
+        if os.path.exists(file_name):
+            os.remove(file_name)
+
+        file_url = tender_package.import_file
         try:
             response = requests.get(file_url, stream=True)
             response.raise_for_status()
@@ -133,6 +131,10 @@ def tender_lot_import_process(tender_package, row_number=0):
 
 def tender_lot_import_complete(tender_package):
     try:
+        folder_name = "/tmp/tender_package_import"
+        file_name = os.path.join(folder_name, tender_package)
+        if os.path.exists(file_name):
+            os.remove(file_name)
         tender_package_publish(tender_package)
         tender_package = frappe.get_doc("Tender Package", tender_package)
         tender_package.import_status = "Completed"
