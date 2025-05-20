@@ -232,8 +232,9 @@
    "link_fieldname": "tender_package"
   }
  ],
+ "make_attachments_public": 1,
  "max_attachments": 1,
- "modified": "2025-05-20 17:03:12.933487",
+ "modified": "2025-05-20 23:12:54.715384",
  "modified_by": "Administrator",
  "module": "Electronic Tender",
  "name": "Tender Package",
