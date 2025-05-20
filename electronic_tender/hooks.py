@@ -8,7 +8,7 @@ app_license = "agpl-3.0"
 # Apps
 # ------------------
 
-# required_apps = []
+required_apps = ["electronic_erp"]
 
 # Each item in the list will be shown as an app in the apps page
 # add_to_apps_screen = [
@@ -165,6 +165,14 @@ app_license = "agpl-3.0"
 # 		"electronic_tender.tasks.monthly"
 # 	],
 # }
+
+scheduler_events = {
+    "cron": {
+        "* * * * *": [
+            "electronic_tender.controllers.scheduled_tasks.collect_tenders"
+        ]
+    }
+}
 
 # Testing
 # -------

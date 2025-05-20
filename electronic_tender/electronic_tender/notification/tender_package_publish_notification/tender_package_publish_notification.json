@@ -1,0 +1,30 @@
+{
+ "attach_print": 0,
+ "channel": "Mobile Notification",
+ "condition": "doc.status == 'Processing'",
+ "creation": "2025-05-20 18:20:23.382523",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Tender Package",
+ "enabled": 1,
+ "event": "Value Change",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<p>Add your message here</p>\n",
+ "message_type": "Markdown",
+ "modified": "2025-05-20 18:56:17.895760",
+ "modified_by": "Administrator",
+ "module": "Electronic Tender",
+ "name": "Tender Package Publish Notification",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "receiver_by_role": "Tender User"
+  }
+ ],
+ "send_system_notification": 1,
+ "send_to_all_assignees": 0,
+ "subject": "{{ doc.package_name }} Published",
+ "value_changed": "status"
+}

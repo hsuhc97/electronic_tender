@@ -1,0 +1,191 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:TD-{#####}",
+ "creation": "2025-05-13 19:28:03.960578",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "tender_type",
+  "tender_name",
+  "currency",
+  "column_break_esoy",
+  "supplier",
+  "bid_type",
+  "tender_image",
+  "section_break_jwqe",
+  "number_of_processing_lots",
+  "section_break_gnzx",
+  "description",
+  "bridge_settings_tab",
+  "mark_up_strategy",
+  "mark_up_value",
+  "mark_up_percent",
+  "bid_settings_tab",
+  "section_break_aiuw",
+  "has_bid_cap",
+  "bid_cap_margin"
+ ],
+ "fields": [
+  {
+   "fieldname": "tender_type",
+   "fieldtype": "Select",
+   "label": "Tender Type",
+   "options": "External\nInternal",
+   "reqd": 1,
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "options": "Supplier",
+   "reqd": 1,
+   "search_index": 1,
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "tender_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Tender Name",
+   "reqd": 1
+  },
+  {
+   "default": "Open",
+   "fieldname": "bid_type",
+   "fieldtype": "Select",
+   "label": "Bid Type",
+   "options": "Open\nSealed"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "tender_image",
+   "fieldtype": "Attach Image",
+   "hidden": 1,
+   "label": "Image"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  },
+  {
+   "depends_on": "eval:doc.tender_type == 'Internal'",
+   "fieldname": "bridge_settings_tab",
+   "fieldtype": "Tab Break",
+   "label": "Bridge Settings"
+  },
+  {
+   "default": "No Mark Up",
+   "fieldname": "mark_up_strategy",
+   "fieldtype": "Select",
+   "label": "Mark Up Strategy",
+   "options": "No Mark Up\nFixed\nPercentage"
+  },
+  {
+   "depends_on": "eval:doc.mark_up_strategy == 'Fixed'",
+   "fieldname": "mark_up_value",
+   "fieldtype": "Int",
+   "label": "Mark Up Value",
+   "mandatory_depends_on": "eval:doc.mark_up_strategy == 'Fixed'"
+  },
+  {
+   "depends_on": "eval:doc.mark_up_strategy == 'Percentage'",
+   "fieldname": "mark_up_percent",
+   "fieldtype": "Percent",
+   "label": "Mark Up Percent",
+   "mandatory_depends_on": "eval:doc.mark_up_strategy == 'Percentage'",
+   "non_negative": 1,
+   "precision": "1"
+  },
+  {
+   "depends_on": "eval:doc.tender_type == 'Internal'",
+   "fieldname": "bid_settings_tab",
+   "fieldtype": "Tab Break",
+   "label": "Bid Settings"
+  },
+  {
+   "fieldname": "section_break_aiuw",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0.0",
+   "depends_on": "eval:doc.has_bid_cap == 1",
+   "description": "(%)percent of bid cap margin",
+   "fieldname": "bid_cap_margin",
+   "fieldtype": "Percent",
+   "label": "Bid Cap Margin",
+   "mandatory_depends_on": "eval:doc.enforce_bid_cap == 1",
+   "non_negative": 1,
+   "precision": "1"
+  },
+  {
+   "fieldname": "column_break_esoy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_gnzx",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "has_bid_cap",
+   "fieldtype": "Check",
+   "label": "Has Bid Cap",
+   "options": "1"
+  },
+  {
+   "fieldname": "section_break_jwqe",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "number_of_processing_lots",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Number of Processing Lots",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "image_field": "tender_image",
+ "index_web_pages_for_search": 1,
+ "links": [
+  {
+   "link_doctype": "Tender Package",
+   "link_fieldname": "tender"
+  }
+ ],
+ "modified": "2025-05-20 05:33:58.946618",
+ "modified_by": "Administrator",
+ "module": "Tender",
+ "name": "Tender",
+ "naming_rule": "Expression",
+ "owner": "hcxu0814@gmail.com",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "row_format": "Dynamic",
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "tender_name"
+}
