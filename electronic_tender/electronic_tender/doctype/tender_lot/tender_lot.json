@@ -42,9 +42,12 @@
   "original_price",
   "actual_price",
   "column_break_obfs",
-  "max_bid_price",
   "asking_min_bid_price",
-  "asking_max_bid_price"
+  "asking_max_bid_price",
+  "column_break_nvpp",
+  "max_bid_price",
+  "max_bid_user",
+  "max_bid_user_name"
  ],
  "fields": [
   {
@@ -275,12 +278,28 @@
    "options": "Tender",
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "fieldname": "column_break_nvpp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "max_bid_user",
+   "fieldtype": "Link",
+   "label": "Max Bid User",
+   "options": "User"
+  },
+  {
+   "fetch_from": "max_bid_user.full_name",
+   "fieldname": "max_bid_user_name",
+   "fieldtype": "Data",
+   "label": "Max Bid User Name"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-05-20 19:19:57.655235",
+ "modified": "2025-05-21 21:13:43.616949",
  "modified_by": "Administrator",
  "module": "Electronic Tender",
  "name": "Tender Lot",
