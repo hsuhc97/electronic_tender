@@ -3,7 +3,7 @@
 
 frappe.ui.form.on("Tender Package", {
 	refresh(frm) {
-		frm.add_custom_button("Summary", () => tenderPackageSummary(frm), "Actions");
+		frm.add_custom_button("Collect", () => tenderPackageSummary(frm), "Actions");
 		if (frm.doc.status == "Draft") {
 			frm.add_custom_button("Publish", () => tenderPackagePublish(frm), "Actions");
 		}
@@ -28,6 +28,9 @@ frappe.ui.form.on("Tender Package", {
 				);
 			}
 		}
+		if (frm.doc.is_imported == 1) {
+			frm.add_custom_button("Export", () => tenderPackageExport(frm));
+		}
 
 		if (frm.doc.filter) {
 			frm.set_value("filter", JSON.stringify(JSON.parse(frm.doc.filter), null, 4));
@@ -40,6 +43,9 @@ function tenderPackageSummary(frm) {
 		method: "electronic_tender.controllers.tender_package.tender_package_summary",
 		args: { tender_package: frm.doc.name },
 	});
+}
+
+function tenderPackageExport(frm) {
 }
 
 function enqueueTenderLotImport(frm, restart = false) {
