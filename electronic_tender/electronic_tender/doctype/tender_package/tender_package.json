@@ -160,7 +160,8 @@
    "description": "Excel, CSV supported",
    "fieldname": "import_file",
    "fieldtype": "Attach",
-   "label": "Import File"
+   "label": "Import File",
+   "make_attachment_public": 1
   },
   {
    "depends_on": "eval:doc.import_status == \"Failed\"",
@@ -234,7 +235,7 @@
  ],
  "make_attachments_public": 1,
  "max_attachments": 1,
- "modified": "2025-05-21 00:22:28.640221",
+ "modified": "2025-05-21 20:33:17.938214",
  "modified_by": "Administrator",
  "module": "Electronic Tender",
  "name": "Tender Package",
