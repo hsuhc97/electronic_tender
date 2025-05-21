@@ -139,6 +139,19 @@ def tender_lot_import_complete(tender_package):
         tender_package = frappe.get_doc("Tender Package", tender_package)
         tender_package.import_status = "Completed"
         tender_package.save()
+
+        message_content = frappe.new_doc("Message Content")
+        message_content.title = "投标消息"
+        message_content.content = "[{0}]新增[{1}]个投标单".format(tender_package.tender, tender_package.number_of_lots)
+        message_content.type = "Tender"
+        message_content.save()
+
+        frappe.enqueue(
+            "electronic_tender.controllers.tender_package.send_tender_package_message",
+            enqueue_after_commit=True,
+            message_content=message_content.name,
+            start=0
+        )
     except Exception as e:
         frappe.db.rollback()
         detailed_error = ''.join(traceback.format_exception(type(e), e, e.__traceback__))
