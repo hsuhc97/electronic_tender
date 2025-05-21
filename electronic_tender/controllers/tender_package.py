@@ -140,9 +140,11 @@ def tender_lot_import_complete(tender_package):
         tender_package.import_status = "Completed"
         tender_package.save()
 
+        tender = frappe.get_doc("Tender", tender_package.tender)
+
         message_content = frappe.new_doc("Message Content")
         message_content.title = "投标消息"
-        message_content.content = "[{0}]新增[{1}]个投标单".format(tender_package.tender, tender_package.number_of_lots)
+        message_content.content = "[{0}]新增[{1}]个投标单".format(tender.tender_name, tender_package.number_of_lots)
         message_content.type = "Tender"
         message_content.save()
 
