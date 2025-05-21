@@ -147,10 +147,9 @@ def tender_lot_import_complete(tender_package):
         message_content.save()
 
         frappe.enqueue(
-            "electronic_tender.controllers.tender_package.send_tender_package_message",
+            "electronic_erp.controllers.mobile_push_notification.send_mobile_push_notification",
             enqueue_after_commit=True,
-            message_content=message_content.name,
-            start=0
+            message_content=message_content.name
         )
     except Exception as e:
         frappe.db.rollback()
